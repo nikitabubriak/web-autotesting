@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using RestSharp;
 using RestSharp.Authenticators;
 using Newtonsoft.Json;
@@ -44,7 +45,7 @@ namespace ProductAutomation.Apis
         private static void GetResponse()
         {
             Response = Client.Execute(Request);
-            //Console.Write("response content: " + Response.Content);
+            Console.Write("response content: " + Response.Content);
         }
 
         private static T DeserialiseResponse<T>()
@@ -55,7 +56,7 @@ namespace ProductAutomation.Apis
         public static void AssertTweetWasPosted(string tweet)
         {
             var result = DeserialiseResponse<List<HomeTimeline>>();
-            //Console.Write("deserialised last tweet: " + result[0].text);
+            Console.Write("deserialised last tweet: " + result[0].text);
             Assert.True(result[0].text.Contains(tweet));
         }
 
